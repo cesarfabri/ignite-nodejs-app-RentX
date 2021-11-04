@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
+import 'reflect-metadata';
 import { container } from 'tsyringe';
 
 import { ListSpecificationsUseCase } from './listSpecificationsUseCase';
 
-class ListCategoriesController {
+class ListSpecificationsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const listSpecificationsUseCase = container.resolve(ListSpecificationsUseCase);
 
@@ -12,4 +13,4 @@ class ListCategoriesController {
   }
 }
 
-export { ListCategoriesController };
+export { ListSpecificationsController };
