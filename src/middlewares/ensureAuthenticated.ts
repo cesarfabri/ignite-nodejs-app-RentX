@@ -29,15 +29,17 @@ export async function ensureAuthenticated(
   try {
     // const decoded = verify(token,
     // '131d2e377489c2f27fa608532cd92b3a12929421530b93f5ec63ed728550a0c4')
-    // pegar somente o sub
+
+    // dentro do token vai ter o iat, exp e o sub que é o id do usuário
+    // pegar somente o sub via interface IPayload
     const { sub: user_id } = verify(
       token,
       process.env.SECRET_JWT,
     ) as IPayload;
 
-    // console.log(sub);
+    // Para buscar se o usuário existe no BD
     const usersRepository = new UsersRepository();
-
+    // via o user_id pego no token
     const user = usersRepository.findById(user_id);
 
     if (!user) {

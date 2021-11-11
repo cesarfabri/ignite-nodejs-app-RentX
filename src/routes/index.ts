@@ -10,6 +10,7 @@ const router = Router();
 router.use('/categories', categoriesRoutes);
 router.use('/specifications', specificationsRoutes);
 router.use('/users', usersRoutes);
+// para chamada direta do authenticated ser usado dentro do app
 router.use(authenticateRoutes);
 
 export { router };

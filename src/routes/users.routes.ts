@@ -22,6 +22,7 @@ usersRoutes.get('/', listUsersController.handle);
 usersRoutes.patch(
   '/avatar',
   ensureAuthenticated,
+  // nome do arquivo como avatar
   uploadAvatar.single('avatar'),
   updateUserAvatarController.handle,
 );

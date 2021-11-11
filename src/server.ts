@@ -17,11 +17,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(router);
 
+// middleware de erros para uso customizado dos erros gerados.
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({ message: err.message });
   }
 
+  // erros gerados que não sejam tratados no app, retornar como erro interno do servidor.
   return response.status(500).json({
     status: 'error',
     message: `Internal server error - ${err.message}`,

@@ -39,6 +39,7 @@ class AuthenticateUserUseCase {
     }
 
     // Gerar o jsonwebtoken
+    // no primeiro parametro pode-se colocar as permissões entre outras que não sejam sensiveis.
     const token = sign({}, process.env.SECRET_JWT, {
       subject: user.id,
       expiresIn: '1d',
