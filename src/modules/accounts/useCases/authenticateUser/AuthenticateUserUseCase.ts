@@ -1,4 +1,5 @@
 import { compare } from 'bcrypt';
+import dotenv from 'dotenv';
 import { sign } from 'jsonwebtoken';
 import { injectable, inject } from 'tsyringe';
 
@@ -38,6 +39,7 @@ class AuthenticateUserUseCase {
       throw new AppError('Email or password incorrect!');
     }
 
+    dotenv.config();
     // Gerar o jsonwebtoken
     // no primeiro parametro pode-se colocar as permissões entre outras que não sejam sensiveis.
     const token = sign({}, process.env.SECRET_JWT, {
